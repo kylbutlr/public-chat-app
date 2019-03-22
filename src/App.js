@@ -96,10 +96,6 @@ class App extends Component {
     });
   }
 
-  tabClick(activeTab) {
-    this.setState({ activeTab });
-  }
-
   handleLoginInputChange(field, e) {
     this.setState({ loginInput: { ...this.state.loginInput, [field]: e.target.value } });
   }
@@ -211,6 +207,19 @@ class App extends Component {
     }
   }
 
+  tabClick(activeTab) {
+    this.setState({ activeTab });
+  }
+
+  capitalizeFirstChar(string) {
+    if (string) {
+      const newString = string.substring(0, 1).toUpperCase() + string.substring(1);
+      return newString;
+    } else {
+      return string;
+    }
+  }
+
   renderPost(data) {
     const { id, text, user_id } = data;
     const username = this.state.users.filter(x => x.id === user_id)[0].username;
@@ -218,7 +227,7 @@ class App extends Component {
       <li key={id}>
         <div>
           <p>
-            {username}: {text}
+            {this.capitalizeFirstChar(username)}: {text}
           </p>
         </div>
       </li>
