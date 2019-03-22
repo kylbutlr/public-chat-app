@@ -1,4 +1,20 @@
 .App {
-  width: 40%;
+  width: 30%;
+  padding: 5vmin;
   margin: 0 auto;
+}
+
+ol {
+  list-style-type:none;
+}
+
+.list {
+  height: 60vh;
+  display: flex;
+  flex-direction: column-reverse;
+  overflow: auto;
+}
+
+.refresh {
+  flex: 1;
 }
