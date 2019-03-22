@@ -85,7 +85,7 @@ class App extends Component {
       this.getPosts();
       document.getElementById('list').classList.add('refresh');
       document.getElementById('list').classList.remove('refresh');
-    }, 1000);
+    }, 2500);
   }
 
   getConfig(cb) {
