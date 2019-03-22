@@ -37,8 +37,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getUsers();
-    this.getPosts();
     this.getSavedSession();
   }
 
@@ -49,18 +47,26 @@ class App extends Component {
         this.setState({ loggedIn: savedSession });
       }
     }
+    this.getUsers(cb => {
+      this.getPosts();
+    });
   }
 
-  getUsers() {
+  getUsers(cb) {
     axios
       .get(`${API_ENDPOINT}/users`)
       .catch(err => {
         console.log(err);
       })
       .then(users => {
-        this.setState({
-          users: users.data,
-        });
+        this.setState(
+          {
+            users: users.data,
+          },
+          () => {
+            cb();
+          }
+        );
       });
   }
 
