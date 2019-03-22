@@ -8,6 +8,12 @@ Uses: React, Axios, RWD
 
 ***
 
+### [Click here for a live preview](https://kylbutlr-chat-app.herokuapp.com/)
+
+No e-mail required to register a new user. Or use the public test account (username: test, password: test).
+
+***
+
 ## Description
 
 Register and login to a personal user account (no e-mail required), then create public chat messages that are visible for all other users. Also features responsive web design for cross-device compatibility.
