@@ -228,57 +228,61 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-        <div
-          style={{
-            display: this.state.loggedIn !== false ? 'block' : 'none',
-          }}>
-          <button onClick={() => this.handleLogout()}>Logout</button>
-        </div>
-        <div
-          style={{
-            display:
-              this.state.loggedIn === false && this.state.activeTab === tabs.LOGIN
-                ? 'block'
-                : 'none',
-          }}>
-          <LoginForm
-            onSubmit={this.handleLoginUser}
-            onChange={this.handleLoginInputChange}
-            onClick={() => this.tabClick(tabs.REGISTER)}
-            {...this.state.loginInput}
-          />
-        </div>
-        <div
-          style={{
-            display:
-              this.state.loggedIn === false && this.state.activeTab === tabs.REGISTER
-                ? 'block'
-                : 'none',
-          }}>
-          <RegisterForm
-            onSubmit={this.handleRegisterUser}
-            onChange={this.handleRegisterInputChange}
-            onClick={() => this.tabClick(tabs.LOGIN)}
-            {...this.state.registerInput}
-          />
-        </div>
-        <div id='list' className='list'>
-          <ol>{this.state.posts.map(n => this.renderPost(n))}</ol>
-        </div>
-        <div>
-          <form onSubmit={e => this.handleCreatePost(e)}>
-            <input
-              type='text'
-              name='text'
-              id='postText'
-              placeholder='New Message'
-              autoComplete='off'
-              required
-              value={this.state.postInput}
-              onChange={e => this.setState({ postInput: e.target.value })}
+        <div className='Login'>
+          <div
+            style={{
+              display: this.state.loggedIn !== false ? 'block' : 'none',
+            }}>
+            <button onClick={() => this.handleLogout()}>Logout</button>
+          </div>
+          <div
+            style={{
+              display:
+                this.state.loggedIn === false && this.state.activeTab === tabs.LOGIN
+                  ? 'block'
+                  : 'none',
+            }}>
+            <LoginForm
+              onSubmit={this.handleLoginUser}
+              onChange={this.handleLoginInputChange}
+              onClick={() => this.tabClick(tabs.REGISTER)}
+              {...this.state.loginInput}
             />
-            <input type='submit' value='Send' />
-          </form>
+          </div>
+          <div
+            style={{
+              display:
+                this.state.loggedIn === false && this.state.activeTab === tabs.REGISTER
+                  ? 'block'
+                  : 'none',
+            }}>
+            <RegisterForm
+              onSubmit={this.handleRegisterUser}
+              onChange={this.handleRegisterInputChange}
+              onClick={() => this.tabClick(tabs.LOGIN)}
+              {...this.state.registerInput}
+            />
+          </div>
+        </div>
+        <div className='Body'>
+          <div id='list' className='list'>
+            <ol>{this.state.posts.map(n => this.renderPost(n))}</ol>
+          </div>
+          <div>
+            <form onSubmit={e => this.handleCreatePost(e)}>
+              <input
+                type='text'
+                name='text'
+                id='postText'
+                placeholder='New Message'
+                autoComplete='off'
+                required
+                value={this.state.postInput}
+                onChange={e => this.setState({ postInput: e.target.value })}
+              />
+              <input type='submit' value='Send' />
+            </form>
+          </div>
         </div>
       </div>
     );
