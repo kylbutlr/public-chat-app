@@ -4,7 +4,7 @@ import './App.css';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
 
-const API_ENDPOINT = 'http://localhost:3000';
+const API_ENDPOINT = 'https://kylbutlr-chat-api.herokuapp.com';
 const tabs = {
   LOGIN: 1,
   REGISTER: 2,
