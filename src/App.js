@@ -230,6 +230,12 @@ class App extends Component {
       <div className='App'>
         <div
           style={{
+            display: this.state.loggedIn !== false ? 'block' : 'none',
+          }}>
+          <button onClick={() => this.handleLogout()}>Logout</button>
+        </div>
+        <div
+          style={{
             display:
               this.state.loggedIn === false && this.state.activeTab === tabs.LOGIN
                 ? 'block'
@@ -273,12 +279,6 @@ class App extends Component {
             />
             <input type='submit' value='Send' />
           </form>
-        </div>
-        <div
-          style={{
-            display: this.state.loggedIn !== false ? 'block' : 'none',
-          }}>
-          <button onClick={() => this.handleLogout()}>Logout</button>
         </div>
       </div>
     );
