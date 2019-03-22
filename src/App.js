@@ -259,13 +259,13 @@ class App extends Component {
               type='text'
               name='text'
               id='postText'
-              placeholder='New Chat Message'
+              placeholder='New Message'
               autoComplete='off'
               required
               value={this.state.postInput}
               onChange={e => this.setState({ postInput: e.target.value })}
             />
-            <input type='submit' value='Create Post' />
+            <input type='submit' value='Send' />
           </form>
         </div>
         <div
