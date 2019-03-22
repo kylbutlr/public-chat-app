@@ -2,7 +2,7 @@
 
 React front-end for an old school public chat room application
 
-Created to be used with my [Public Chat (API)](https://github.com/kylbutlr/public-chat-api) server
+Created to be used with my [Public Chat (API)](https://github.com/kylbutlr/public-chat-api)
 
 Uses: React, Axios, RWD
 
