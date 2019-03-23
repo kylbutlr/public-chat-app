@@ -8,6 +8,7 @@ const API_ENDPOINT = 'https://kylbutlr-chat-api.herokuapp.com';
 const tabs = {
   LOGIN: 1,
   REGISTER: 2,
+  MAIN: 3,
 };
 
 class App extends Component {
@@ -18,8 +19,10 @@ class App extends Component {
     this.handleRegisterInputChange = this.handleRegisterInputChange.bind(this);
     this.handleRegisterUser = this.handleRegisterUser.bind(this);
     this.tabClick = this.tabClick.bind(this);
+    this.resetLoginInput = this.resetLoginInput.bind(this);
+    this.resetRegisterInput = this.resetRegisterInput.bind(this);
     this.state = {
-      activeTab: tabs.LOGIN,
+      activeTab: tabs.MAIN,
       loggedIn: false,
       users: [],
       posts: [],
@@ -44,10 +47,12 @@ class App extends Component {
     const savedSession = JSON.parse(window.localStorage.getItem('savedSession'));
     if (savedSession) {
       if (savedSession.jwt !== '') {
-        this.setState({ loggedIn: savedSession });
+        this.setState({ loggedIn: savedSession }, () => {
+          this.tabClick(tabs.MAIN);
+        });
       }
     }
-    this.getUsers(cb => {
+    this.getUsers(() => {
       this.getPosts();
     });
   }
@@ -109,7 +114,7 @@ class App extends Component {
     if (this.state.loggedIn === false) {
       alert('Please log in first');
       this.setState({ postInput: '' });
-      document.getElementById('loginUsername').focus();
+      this.tabClick(tabs.LOGIN);
     } else {
       const text = this.state.postInput;
       const user_id = this.state.loggedIn.user_id;
@@ -160,7 +165,6 @@ class App extends Component {
               },
             });
             this.tabClick(tabs.LOGIN);
-            document.getElementById('loginUsername').focus();
           }
         });
     } else {
@@ -189,7 +193,7 @@ class App extends Component {
         if (user) {
           this.setState({ loggedIn: user.data }, () => {
             window.localStorage.setItem('savedSession', JSON.stringify(user.data));
-            document.getElementById('postText').focus();
+            this.tabClick(tabs.MAIN);
           });
         }
       });
@@ -208,7 +212,31 @@ class App extends Component {
   }
 
   tabClick(activeTab) {
-    this.setState({ activeTab });
+    if (this.state.activeTab === tabs.LOGIN && activeTab === tabs.REGISTER) {
+      this.resetLoginInput();
+    }
+    if (this.state.activeTab === tabs.REGISTER && activeTab === tabs.LOGIN) {
+      this.resetRegisterInput();
+    }
+    if (activeTab === tabs.MAIN) {
+      document.getElementById('LoginForm').classList.remove('reveal');
+      document.getElementById('RegisterForm').classList.remove('reveal');
+      document.getElementById('postInput').focus();
+      setTimeout(() => {
+        this.setState({ activeTab })
+      }, 250);
+    } else {
+      this.setState({ activeTab }, () => {
+        if (activeTab === tabs.LOGIN) {
+          document.getElementById('loginUsername').focus();
+        }
+        if (activeTab === tabs.REGISTER) {
+          document.getElementById('registerUsername').focus();
+        }
+        document.getElementById('LoginForm').classList.add('reveal');
+        document.getElementById('RegisterForm').classList.add('reveal');
+      });
+    }
   }
 
   capitalizeFirstChar(string) {
@@ -220,15 +248,33 @@ class App extends Component {
     }
   }
 
+  resetLoginInput() {
+    this.setState({
+      loginInput: {
+        username: '',
+        password: '',
+      },
+    });
+  }
+
+  resetRegisterInput() {
+    this.setState({
+      registerInput: {
+        username: '',
+        password: '',
+        confirmPass: '',
+      },
+    });
+  }
+
   renderPost(data) {
     const { id, text, user_id } = data;
     const username = this.state.users.filter(x => x.id === user_id)[0].username;
     return (
       <li key={id}>
-        <div>
-          <p>
-            {this.capitalizeFirstChar(username)}: {text}
-          </p>
+        <div className={this.state.loggedIn.username === username ? 'current-user' : ''}>
+          <p className='message-username'>{this.capitalizeFirstChar(username)}:</p>
+          <p className='message-text'>{text}</p>
         </div>
       </li>
     );
@@ -237,19 +283,39 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-        <div className='Login'>
+        <div className='Header'>
           <div
             style={{
-              display: this.state.loggedIn !== false ? 'block' : 'none',
+              display:
+                this.state.activeTab === tabs.MAIN && this.state.loggedIn === false
+                  ? 'block'
+                  : 'none',
+            }}>
+            <button onClick={() => this.tabClick(tabs.LOGIN)}>Login</button>
+          </div>
+          <div
+            style={{
+              display:
+                this.state.activeTab === tabs.MAIN && this.state.loggedIn !== false
+                  ? 'block'
+                  : 'none',
             }}>
             <button onClick={() => this.handleLogout()}>Logout</button>
           </div>
           <div
             style={{
               display:
-                this.state.loggedIn === false && this.state.activeTab === tabs.LOGIN
+                this.state.activeTab !== tabs.MAIN && this.state.loggedIn === false
                   ? 'block'
                   : 'none',
+            }}>
+            <button onClick={() => this.tabClick(tabs.MAIN)}>Hide Login</button>
+          </div>
+          <div
+            className='LoginForm'
+            id='LoginForm'
+            style={{
+              display: this.state.activeTab === tabs.LOGIN ? 'block' : 'none',
             }}>
             <LoginForm
               onSubmit={this.handleLoginUser}
@@ -259,11 +325,10 @@ class App extends Component {
             />
           </div>
           <div
+            className='RegisterForm'
+            id='RegisterForm'
             style={{
-              display:
-                this.state.loggedIn === false && this.state.activeTab === tabs.REGISTER
-                  ? 'block'
-                  : 'none',
+              display: this.state.activeTab === tabs.REGISTER ? 'block' : 'none',
             }}>
             <RegisterForm
               onSubmit={this.handleRegisterUser}
@@ -277,12 +342,12 @@ class App extends Component {
           <div id='list' className='list'>
             <ol>{this.state.posts.map(n => this.renderPost(n))}</ol>
           </div>
-          <div>
+          <div className='postMessage'>
             <form onSubmit={e => this.handleCreatePost(e)}>
               <input
                 type='text'
                 name='text'
-                id='postText'
+                id='postInput'
                 placeholder='New Message'
                 autoComplete='off'
                 required
