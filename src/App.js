@@ -221,7 +221,9 @@ class App extends Component {
     if (activeTab === tabs.MAIN) {
       document.getElementById('LoginForm').classList.remove('reveal');
       document.getElementById('RegisterForm').classList.remove('reveal');
-      document.getElementById('postInput').focus();
+      if (this.state.loggedIn !== false) {
+        document.getElementById('postInput').focus();
+      };
       setTimeout(() => {
         this.setState({ activeTab })
       }, 250);
