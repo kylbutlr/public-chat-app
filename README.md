@@ -10,7 +10,9 @@ Uses: React, Axios, RWD
 
 ### [Click here for a live preview](https://kylbutlr-chat-app.herokuapp.com/)
 
-No e-mail required to register a new user. Or use the public test account (username: test, password: test).
+**All messages will be publicly displayed (deleted daily)**.
+
+No e-mail required to register a new user, or feel free to use the public test account (username: test, password: test).
 
 ***
 
