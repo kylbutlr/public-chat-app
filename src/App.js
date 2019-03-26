@@ -293,7 +293,7 @@ class App extends Component {
                   ? 'block'
                   : 'none',
             }}>
-            <button onClick={() => this.tabClick(tabs.LOGIN)}>Login</button>
+            <button className='login-logout' onClick={() => this.tabClick(tabs.LOGIN)}>Login</button>
           </div>
           <div
             style={{
@@ -302,7 +302,7 @@ class App extends Component {
                   ? 'block'
                   : 'none',
             }}>
-            <button onClick={() => this.handleLogout()}>Logout</button>
+            <button className='login-logout' onClick={() => this.handleLogout()}>Logout</button>
           </div>
           <div
             style={{
@@ -311,7 +311,7 @@ class App extends Component {
                   ? 'block'
                   : 'none',
             }}>
-            <button onClick={() => this.tabClick(tabs.MAIN)}>Hide Login</button>
+            <button className='login-logout' onClick={() => this.tabClick(tabs.MAIN)}>Cancel</button>
           </div>
           <div
             className='LoginForm'
@@ -350,13 +350,14 @@ class App extends Component {
                 type='text'
                 name='text'
                 id='postInput'
+                className='postInput'
                 placeholder='New Message'
                 autoComplete='off'
                 required
                 value={this.state.postInput}
                 onChange={e => this.setState({ postInput: e.target.value })}
               />
-              <input type='submit' value='Send' />
+              <input className='postButton' type='submit' value='Send' />
             </form>
           </div>
         </div>

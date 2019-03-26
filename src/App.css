@@ -1,3 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .App {
   width: 100vw;
   height: calc(100vh);
@@ -34,8 +44,7 @@ ol {
   display: flex;
   flex-direction: column-reverse;
   overflow: auto;
-  border: 1px solid #111;
-  margin-bottom: 1rem;
+  border: 1px #11111160 solid;
 }
 
 .list div {
@@ -64,22 +73,40 @@ ol {
 
 .LoginForm,
 .RegisterForm {
-  border: 1px solid #111;
-  background: hsla(0, 0%, 7%, 0.1);
+  border: 1px #11111160 solid;
+  background: #E6E6E6;
   padding: 0.5rem;
   position: absolute;
-  top: 5rem;
+  top: 12.5rem;
   z-index: 10;
   opacity: 0;
   transition: opacity 0.5s;
 }
 
 .postMessage {
+  height: 5rem;
   display: flex;
+  align-items: center;
+}
+
+.postInput {
+  width: 65vw;
+  height: 2.5rem;
+  border: 1px #11111160 solid;
+}
+
+.postButton {
+  width: 25vw;
+  height: 2.5rem;
 }
 
 button, input {
   padding: 0.5rem 1rem;
+}
+
+.login-logout {
+  height: 2.5rem;
+  width: 45vw;
 }
 
 .current-user {
@@ -94,14 +121,41 @@ button, input {
   opacity: 1;
 }
 
-@media only screen and (min-width: 425px) {
+@media only screen and (min-width: 725px) {
+
   .list {
     width: 60vw;
+    height: 60vh;
+  }
+
+  .login-logout {
+    width: 20vw;
+  }
+
+  .postInput {
+    width: 45vw;
+  }
+
+  .postButton {
+    width: 15vw;
   }
 }
 
 @media only screen and (min-width: 1024px) {
+
   .list {
+    width: 40vw;
+  }
+
+  .login-logout {
+    width: 15vw;
+  }
+
+  .postInput {
     width: 30vw;
+  }
+
+  .postButton {
+    width: 10vw;
   }
 }
