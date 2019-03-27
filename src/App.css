@@ -38,6 +38,7 @@ ol {
 }
 
 .list {
+  border-radius: 0.5rem;
   background: #ececec;
   height: 75vh;
   width: 90vw;
@@ -75,11 +76,12 @@ ol {
 
 .LoginForm,
 .RegisterForm {
+  border-radius: 0.5rem;
   border: 1px #11111160 solid;
   background: #E6E6E6;
-  padding: 0.5rem;
+  padding: 0.75rem;
   position: absolute;
-  top: 10rem;
+  top: 7.5rem;
   z-index: 10;
   opacity: 0;
   transition: opacity 0.5s;
@@ -92,6 +94,7 @@ ol {
 }
 
 .postInput {
+  border-radius: 0.5rem 0 0 0.5rem;
   width: 65vw;
   height: 2.5rem;
   border: 1px #11111160 solid;
