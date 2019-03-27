@@ -6,8 +6,8 @@
 
 html {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   overflow: hidden;
 }
 
@@ -87,6 +87,11 @@ ol {
 
 .list div {
   padding: 0.25rem 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.list li:last-child div {
+  margin-bottom: 0;
 }
 
 .list p {
