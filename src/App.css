@@ -5,15 +5,49 @@
 }
 
 html {
+  height: 100%;
+  width: 100%;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+p,
+.or {
+  cursor: default;
+}
+
+button,
+input[type=submit] {
+  cursor: pointer;
+}
+
+.input {
+  background: #ececec;
+  border-radius: 0.5rem;
+  border: 1px #11111180 solid;
+  margin-bottom: 0.5rem;
+  box-shadow: inset 0 2px 3px rgba(10,10,10,.2) !important;
+}
+
+.button {
+  background: #6088d1;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  border: 1px #11111180 solid;
+}
+
+.button:hover {
+  background: #7095db;
+  border: 1px #11111180 solid;
 }
 
 .App {
   width: 100vw;
-  height: calc(100vh);
+  height: 100vh;
   overflow: hidden;
   margin: 0 auto;
-  background: hsla(0, 0%, 7%, 0.1);
+  background: #41393E;
+  display: flex;
+  flex-direction: column;
 }
 
 .Header {
@@ -45,11 +79,13 @@ ol {
   display: flex;
   flex-direction: column-reverse;
   overflow: auto;
-  border: 1px #11111160 solid;
+  border: 1px #11111180 solid;
+  box-shadow: inset 0 4px 6px rgba(10,10,10,.2);
+  margin-bottom: 0 !important;
 }
 
 .list div {
-  padding: 0.5rem;
+  padding: 0.25rem 0.5rem;
 }
 
 .list p {
@@ -57,7 +93,8 @@ ol {
 }
 
 .message-username {
-  padding-bottom: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
 .message-text {
@@ -77,32 +114,42 @@ ol {
 .LoginForm,
 .RegisterForm {
   border-radius: 0.5rem;
-  border: 1px #11111160 solid;
-  background: #E6E6E6;
+  border: 1px #11111180 solid;
+  background: #41393E;
   padding: 0.75rem;
   position: absolute;
-  top: 7.5rem;
+  top: 6.25rem;
   z-index: 10;
   opacity: 0;
   transition: opacity 0.5s;
+  box-shadow: 0 2px 3px rgba(10,10,10,.2), 0 0 0 1px rgba(10,10,10,.2);
 }
 
 .postMessage {
   height: 5rem;
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+.postMessage input {
+  margin-bottom: 0 !important;
 }
 
 .postInput {
   border-radius: 0.5rem 0 0 0.5rem;
   width: 65vw;
   height: 2.5rem;
-  border: 1px #11111160 solid;
+  border: 1px #11111180 solid;
+  box-shadow: 0 2px 3px rgba(10,10,10,.2), 0 0 0 1px rgba(10,10,10,.2);
 }
 
 .postButton {
   width: 25vw;
   height: 2.5rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+  border: 1px #11111180 solid;
+  box-shadow: 0 2px 3px rgba(10,10,10,.2), 0 0 0 1px rgba(10,10,10,.2);
 }
 
 button, input {
@@ -112,13 +159,19 @@ button, input {
 .login-logout {
   height: 2.5rem;
   width: 45vw;
+  border-radius: 0.5rem;
+  border: 1px #11111180 solid;
+  box-shadow: 0 2px 3px rgba(10,10,10,.2), 0 0 0 1px rgba(10,10,10,.2);
 }
 
 .current-user {
-  background: #E6E6E6;
+  background: #6088d140;
+  border-radius: 0.5rem;
 }
 
 .or {
+  color: #ececec;
+  font-weight: 500;
   width: 100%;
   height: 1.5rem;
   text-align: center;
@@ -137,6 +190,11 @@ button, input {
   .list {
     width: 60vw;
     height: 60vh;
+  }
+
+  .LoginForm,
+  .RegisterForm {
+    top: 7.5rem;
   }
 
   .login-logout {

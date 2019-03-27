@@ -2,11 +2,12 @@ import React from 'react';
 
 export default ({ onSubmit, onChange, username, password, onClick }) => (
   <div>
-  <form onSubmit={onSubmit}>
+  <form className='form' onSubmit={onSubmit}>
     <input
       type='text'
       name='username'
       id='loginUsername'
+      className='input'
       placeholder='Username'
       autoComplete='off'
       required
@@ -18,6 +19,7 @@ export default ({ onSubmit, onChange, username, password, onClick }) => (
       type='password'
       name='password'
       id='loginPassword'
+      className='input'
       placeholder='Password'
       autoComplete='off'
       required
@@ -25,9 +27,9 @@ export default ({ onSubmit, onChange, username, password, onClick }) => (
       onChange={e => onChange('password', e)}
     />
     <br />
-    <input type='submit' value='Login' />
+    <input className='button' type='submit' value='Login' />
   </form>
   <div className='or'>or</div>
-  <button onClick={onClick}>Register</button>
+  <button className='button' onClick={onClick}>Register</button>
   </div>
 );

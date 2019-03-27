@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import '../node_modules/bulma/css/bulma.min.css';
 import './App.css';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
@@ -194,6 +195,7 @@ class App extends Component {
           this.setState({ loggedIn: user.data }, () => {
             window.localStorage.setItem('savedSession', JSON.stringify(user.data));
             this.tabClick(tabs.MAIN);
+            this.resetLoginInput();
           });
         }
       });
@@ -293,7 +295,7 @@ class App extends Component {
                   ? 'block'
                   : 'none',
             }}>
-            <button className='login-logout' onClick={() => this.tabClick(tabs.LOGIN)}>Login</button>
+            <button className='button login-logout' onClick={() => this.tabClick(tabs.LOGIN)}>Login</button>
           </div>
           <div
             style={{
@@ -302,7 +304,7 @@ class App extends Component {
                   ? 'block'
                   : 'none',
             }}>
-            <button className='login-logout' onClick={() => this.handleLogout()}>Logout</button>
+            <button className='button login-logout' onClick={() => this.handleLogout()}>Logout</button>
           </div>
           <div
             style={{
@@ -311,7 +313,7 @@ class App extends Component {
                   ? 'block'
                   : 'none',
             }}>
-            <button className='login-logout' onClick={() => this.tabClick(tabs.MAIN)}>Cancel</button>
+            <button className='button login-logout' onClick={() => this.tabClick(tabs.MAIN)}>Cancel</button>
           </div>
           <div
             className='LoginForm'
@@ -350,14 +352,14 @@ class App extends Component {
                 type='text'
                 name='text'
                 id='postInput'
-                className='postInput'
+                className='input postInput'
                 placeholder='New Message'
                 autoComplete='off'
                 required
                 value={this.state.postInput}
                 onChange={e => this.setState({ postInput: e.target.value })}
               />
-              <input className='postButton' type='submit' value='Send' />
+              <input className='button postButton' type='submit' value='Send' />
             </form>
           </div>
         </div>
