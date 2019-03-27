@@ -79,7 +79,7 @@ ol {
   background: #E6E6E6;
   padding: 0.5rem;
   position: absolute;
-  top: 12.5rem;
+  top: 10rem;
   z-index: 10;
   opacity: 0;
   transition: opacity 0.5s;
