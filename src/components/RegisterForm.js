@@ -38,6 +38,7 @@ export default ({ onSubmit, onChange, username, password, confirmPass, onClick }
     <br />
     <input type='submit' value='Register' />
   </form>
+  <div className='or'>or</div>
   <button onClick={onClick}>Back to Login</button>
   </div>
 );

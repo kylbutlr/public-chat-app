@@ -63,12 +63,14 @@ ol {
   padding: 0 0.5rem;
 }
 
+.LoginForm input[type=submit],
+.RegisterForm input[type=submit] {
+  width: 100%;
+}
+
 .LoginForm button,
 .RegisterForm button {
-  float: right;
-  position: relative;
-  bottom: 2.25rem;
-  margin-bottom: -2.25rem;
+  width: 100%;
 }
 
 .LoginForm,
@@ -110,7 +112,13 @@ button, input {
 }
 
 .current-user {
-  background: hsla(0, 0%, 7%, 0.1);
+  background: #E6E6E6;
+}
+
+.or {
+  width: 100%;
+  height: 1.5rem;
+  text-align: center;
 }
 
 .refresh {
