@@ -40,7 +40,8 @@ input[type=submit] {
 }
 
 .App {
-  min-height: calc(100vh - (89px + 1em));
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   width: 100vw;
   overflow: hidden;
   margin: 0 auto;
@@ -191,10 +192,6 @@ button, input {
 }
 
 @media only screen and (min-width: 725px) {
-
-  .App {
-    height: 100vh;
-  }
 
   .list {
     width: 60vw;
