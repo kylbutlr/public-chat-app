@@ -5,7 +5,6 @@
 }
 
 html {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   overflow: hidden;
 }
 
@@ -189,6 +188,11 @@ button, input {
 
 .reveal {
   opacity: 1;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
 }
 
 @media only screen and (min-width: 725px) {
