@@ -18,7 +18,7 @@ No e-mail required to register a new user, or feel free to use the public test a
 
 ## Description
 
-Register and login to a personal user account (no e-mail required), then create public chat messages that are visible for all other users. Also features responsive web design for cross-device compatibility.
+Old school public chat room application, inspired by AOL's Instant Messenger (AIM). Register and login to a personal user account (no e-mail required), then create public chat messages that are visible for all other users. Also features responsive web design for cross-device compatibility.
 
 ## Install
 
