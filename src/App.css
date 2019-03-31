@@ -97,6 +97,13 @@ ol {
   margin: 0;
 }
 
+.message {
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .message-username {
   font-size: 1.1rem;
   font-weight: 500;
@@ -105,6 +112,8 @@ ol {
 .message-text {
   padding: 0 0.5rem;
 }
+
+
 
 .LoginForm input[type=submit],
 .RegisterForm input[type=submit] {

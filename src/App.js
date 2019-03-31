@@ -120,33 +120,6 @@ class App extends Component {
     this.setState({ registerInput: { ...this.state.registerInput, [field]: e.target.value } });
   }
 
-  handleCreatePost(e) {
-    e.preventDefault();
-    if (this.state.loggedIn === false) {
-      alert('Please log in first');
-      this.setState({ postInput: '' });
-      this.tabClick(tabs.LOGIN);
-    } else {
-      const text = this.state.postInput;
-      const user_id = this.state.loggedIn.user_id;
-      const created = new Date();
-      const newPost = { text, created, user_id };
-      this.getConfig(config => {
-        axios
-          .post(`${API_ENDPOINT}/posts`, newPost, config)
-          .catch(err => {
-            console.log(err);
-          })
-          .then(data => {
-            this.setState({
-              postInput: '',
-              posts: this.state.posts.concat(data.data),
-            });
-          });
-      });
-    }
-  }
-
   handleRegisterUser(e) {
     e.preventDefault();
     if (this.state.registerInput.password === this.state.registerInput.confirmPass) {
@@ -223,6 +196,49 @@ class App extends Component {
     }
   }
 
+  handleCreatePost(e) {
+    e.preventDefault();
+    if (this.state.loggedIn === false) {
+      alert('Please log in first');
+      this.setState({ postInput: '' });
+      this.tabClick(tabs.LOGIN);
+    } else {
+      const text = this.state.postInput;
+      const user_id = this.state.loggedIn.user_id;
+      const created = new Date();
+      const newPost = { text, created, user_id };
+      this.getConfig(config => {
+        axios
+          .post(`${API_ENDPOINT}/posts`, newPost, config)
+          .catch(err => {
+            console.log(err);
+          })
+          .then(data => {
+            this.setState({
+              postInput: '',
+              posts: this.state.posts.concat(data.data),
+            });
+          });
+      });
+    }
+  }
+
+  handleDeletePost(e) {
+    const postId = e.target.id;
+    this.getConfig(config => {
+    axios
+      .delete(`${API_ENDPOINT}/posts/${postId}`, config)
+      .catch(err => {
+        console.log(err);
+      })
+      .then(() => {
+        this.setState({
+          posts: this.state.posts.filter(x => x.id !== Number(postId))
+        })
+      })
+    });
+  }
+
   tabClick(activeTab) {
     if (this.state.activeTab === tabs.LOGIN && activeTab === tabs.REGISTER) {
       this.resetLoginInput();
@@ -235,9 +251,9 @@ class App extends Component {
       document.getElementById('RegisterForm').classList.remove('reveal');
       if (this.state.loggedIn !== false) {
         document.getElementById('postInput').focus();
-      };
+      }
       setTimeout(() => {
-        this.setState({ activeTab })
+        this.setState({ activeTab });
       }, 250);
     } else {
       this.setState({ activeTab }, () => {
@@ -286,9 +302,23 @@ class App extends Component {
     const username = this.state.users.filter(x => x.id === user_id)[0].username;
     return (
       <li key={id}>
-        <div className={this.state.loggedIn.username === username ? 'current-user' : ''}>
-          <p className='message-username'>{this.capitalizeFirstChar(username)}:</p>
-          <p className='message-text'>{text}</p>
+        <div
+          className={
+            this.state.loggedIn.username === username ? 'message current-user' : 'message'
+          }>
+          <div className='message-content'>
+            <p className='message-username'>{this.capitalizeFirstChar(username)}:</p>
+            <p className='message-text'>{text}</p>
+          </div>
+          <div
+            className='delete-message'
+            style={{
+              display: this.state.loggedIn.username === username ? 'block' : 'none',
+            }}>
+            <button className='button' id={id} onClick={e => this.handleDeletePost(e)}>
+              X
+            </button>
+          </div>
         </div>
       </li>
     );
@@ -305,7 +335,9 @@ class App extends Component {
                   ? 'block'
                   : 'none',
             }}>
-            <button className='button login-logout' onClick={() => this.tabClick(tabs.LOGIN)}>Login</button>
+            <button className='button login-logout' onClick={() => this.tabClick(tabs.LOGIN)}>
+              Login
+            </button>
           </div>
           <div
             style={{
@@ -314,7 +346,9 @@ class App extends Component {
                   ? 'block'
                   : 'none',
             }}>
-            <button className='button login-logout' onClick={() => this.handleLogout()}>Logout</button>
+            <button className='button login-logout' onClick={() => this.handleLogout()}>
+              Logout
+            </button>
           </div>
           <div
             style={{
@@ -323,7 +357,9 @@ class App extends Component {
                   ? 'block'
                   : 'none',
             }}>
-            <button className='button login-logout' onClick={() => this.tabClick(tabs.MAIN)}>Cancel</button>
+            <button className='button login-logout' onClick={() => this.tabClick(tabs.MAIN)}>
+              Cancel
+            </button>
           </div>
           <div
             className='LoginForm'
