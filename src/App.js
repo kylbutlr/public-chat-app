@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../node_modules/bulma/css/bulma.min.css';
 import './App.css';
-import LoginForm from './components/LoginForm';
-import RegisterForm from './components/RegisterForm';
+import Navbar from './Components/Navbar';
+import Body from './Components/Body';
 
 const API_ENDPOINT = 'https://kylbutlr-chat-api.herokuapp.com';
 const tabs = {
@@ -19,6 +19,9 @@ class App extends Component {
     this.handleLoginUser = this.handleLoginUser.bind(this);
     this.handleRegisterInputChange = this.handleRegisterInputChange.bind(this);
     this.handleRegisterUser = this.handleRegisterUser.bind(this);
+    this.handlePostInputChange = this.handlePostInputChange.bind(this);
+    this.handleCreatePost = this.handleCreatePost.bind(this);
+    this.handleDeletePost = this.handleDeletePost.bind(this);
     this.tabClick = this.tabClick.bind(this);
     this.resetLoginInput = this.resetLoginInput.bind(this);
     this.resetRegisterInput = this.resetRegisterInput.bind(this);
@@ -120,6 +123,10 @@ class App extends Component {
     this.setState({ registerInput: { ...this.state.registerInput, [field]: e.target.value } });
   }
 
+  handlePostInputChange(e) {
+    this.setState({ postInput: e.target.value });
+  }
+
   handleRegisterUser(e) {
     e.preventDefault();
     if (this.state.registerInput.password === this.state.registerInput.confirmPass) {
@@ -184,18 +191,6 @@ class App extends Component {
       });
   }
 
-  handleLogout() {
-    if (window.confirm('Are you sure you want to logout?')) {
-      this.tabClick(tabs.LOGIN);
-      this.setState({
-        loggedIn: false,
-      });
-      const localStorage = JSON.parse(window.localStorage.getItem('savedSession'));
-      localStorage.jwt = '';
-      window.localStorage.setItem('savedSession', JSON.stringify(localStorage));
-    }
-  }
-
   handleCreatePost(e) {
     e.preventDefault();
     if (this.state.loggedIn === false) {
@@ -226,16 +221,16 @@ class App extends Component {
   handleDeletePost(e) {
     const postId = e.target.id;
     this.getConfig(config => {
-    axios
-      .delete(`${API_ENDPOINT}/posts/${postId}`, config)
-      .catch(err => {
-        console.log(err);
-      })
-      .then(() => {
-        this.setState({
-          posts: this.state.posts.filter(x => x.id !== Number(postId))
+      axios
+        .delete(`${API_ENDPOINT}/posts/${postId}`, config)
+        .catch(err => {
+          console.log(err);
         })
-      })
+        .then(() => {
+          this.setState({
+            posts: this.state.posts.filter(x => x.id !== Number(postId)),
+          });
+        });
     });
   }
 
@@ -269,15 +264,6 @@ class App extends Component {
     }
   }
 
-  capitalizeFirstChar(string) {
-    if (string) {
-      const newString = string.substring(0, 1).toUpperCase() + string.substring(1);
-      return newString;
-    } else {
-      return string;
-    }
-  }
-
   resetLoginInput() {
     this.setState({
       loginInput: {
@@ -297,118 +283,27 @@ class App extends Component {
     });
   }
 
-  renderPost(data) {
-    const { id, text, user_id } = data;
-    const username = this.state.users.filter(x => x.id === user_id)[0].username;
-    return (
-      <li key={id}>
-        <div
-          className={
-            this.state.loggedIn.username === username ? 'message current-user' : 'message'
-          }>
-          <div className='message-content'>
-            <p className='message-username'>{this.capitalizeFirstChar(username)}:</p>
-            <p className='message-text'>{text}</p>
-          </div>
-          <div
-            className='delete-message'
-            style={{
-              display: this.state.loggedIn.username === username ? 'block' : 'none',
-            }}>
-            <button className='button' id={id} onClick={e => this.handleDeletePost(e)}>
-              X
-            </button>
-          </div>
-        </div>
-      </li>
-    );
-  }
-
   render() {
     return (
       <div className='App'>
-        <div className='Header'>
-          <div
-            style={{
-              display:
-                this.state.activeTab === tabs.MAIN && this.state.loggedIn === false
-                  ? 'block'
-                  : 'none',
-            }}>
-            <button className='button login-logout' onClick={() => this.tabClick(tabs.LOGIN)}>
-              Login
-            </button>
-          </div>
-          <div
-            style={{
-              display:
-                this.state.activeTab === tabs.MAIN && this.state.loggedIn !== false
-                  ? 'block'
-                  : 'none',
-            }}>
-            <button className='button login-logout' onClick={() => this.handleLogout()}>
-              Logout
-            </button>
-          </div>
-          <div
-            style={{
-              display:
-                this.state.activeTab !== tabs.MAIN && this.state.loggedIn === false
-                  ? 'block'
-                  : 'none',
-            }}>
-            <button className='button login-logout' onClick={() => this.tabClick(tabs.MAIN)}>
-              Cancel
-            </button>
-          </div>
-          <div
-            className='LoginForm'
-            id='LoginForm'
-            style={{
-              display: this.state.activeTab === tabs.LOGIN ? 'block' : 'none',
-            }}>
-            <LoginForm
-              onSubmit={this.handleLoginUser}
-              onChange={this.handleLoginInputChange}
-              onClick={() => this.tabClick(tabs.REGISTER)}
-              {...this.state.loginInput}
-            />
-          </div>
-          <div
-            className='RegisterForm'
-            id='RegisterForm'
-            style={{
-              display: this.state.activeTab === tabs.REGISTER ? 'block' : 'none',
-            }}>
-            <RegisterForm
-              onSubmit={this.handleRegisterUser}
-              onChange={this.handleRegisterInputChange}
-              onClick={() => this.tabClick(tabs.LOGIN)}
-              {...this.state.registerInput}
-            />
-          </div>
-        </div>
-        <div className='Body'>
-          <div id='list' className='list'>
-            <ol>{this.state.posts.map(n => this.renderPost(n))}</ol>
-          </div>
-          <div className='postMessage'>
-            <form onSubmit={e => this.handleCreatePost(e)}>
-              <input
-                type='text'
-                name='text'
-                id='postInput'
-                className='input postInput'
-                placeholder='New Message'
-                autoComplete='off'
-                required
-                value={this.state.postInput}
-                onChange={e => this.setState({ postInput: e.target.value })}
-              />
-              <input className='button postButton' type='submit' value='Send' />
-            </form>
-          </div>
-        </div>
+        <Navbar
+          tabs={tabs}
+          activeTab={this.state.activeTab}
+          loggedIn={this.state.loggedIn}
+          tabClick={this.tabClick}
+          handleLoginUser={this.handleLoginUser}
+          handleLoginInputChange={this.handleLoginInputChange}
+          handleRegisterUser={this.handleRegisterUser}
+          handleRegisterInputChange={this.handleRegisterInputChange}
+        />
+        <Body
+          posts={this.state.posts}
+          users={this.state.users}
+          loggedIn={this.state.loggedIn}
+          handleCreatePost={this.handleCreatePost}
+          handleDeletePost={this.handleDeletePost}
+          handlePostInputChange={this.handlePostInputChange}
+        />
       </div>
     );
   }
