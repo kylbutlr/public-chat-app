@@ -13,11 +13,6 @@ p,
   cursor: default;
 }
 
-button,
-input[type=submit] {
-  cursor: pointer;
-}
-
 .input {
   background: #ececec;
   border-radius: 0.5rem;
@@ -112,8 +107,6 @@ ol {
 .message-text {
   padding: 0 0.5rem;
 }
-
-
 
 .LoginForm input[type=submit],
 .RegisterForm input[type=submit] {
