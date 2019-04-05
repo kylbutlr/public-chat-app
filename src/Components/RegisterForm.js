@@ -41,12 +41,8 @@ export default class RegisterForm extends Component {
             onChange={e => this.props.onChange('confirmPass', e)}
           />
           <br />
-          <input className='button' type='submit' value='Register' />
+          <input className='button' type='submit' value='Register New User' />
         </form>
-        <div className='or'>or</div>
-        <button className='button' onClick={this.props.onClick}>
-          Back to Login
-        </button>
       </div>
     );
   }

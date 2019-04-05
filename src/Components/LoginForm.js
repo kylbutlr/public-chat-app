@@ -31,10 +31,6 @@ export default class LoginForm extends Component {
           <br />
           <input className='button' type='submit' value='Login' />
         </form>
-        <div className='or'>or</div>
-        <button className='button' onClick={this.props.onClick}>
-          Register
-        </button>
       </div>
     );
   }

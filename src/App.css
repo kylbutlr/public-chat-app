@@ -8,8 +8,7 @@ html {
   overflow: hidden;
 }
 
-p,
-.or {
+p {
   cursor: default;
 }
 
@@ -108,6 +107,12 @@ ol {
   padding: 0 0.5rem;
 }
 
+.nav-buttons {
+  display:flex;
+  justify-content: space-evenly;
+  width: 90vw;
+}
+
 .LoginForm input[type=submit],
 .RegisterForm input[type=submit] {
   width: 100%;
@@ -165,7 +170,7 @@ button, input {
 
 .login-logout {
   height: 2.5rem;
-  width: 45vw;
+  width: 40vw;
   border-radius: 0.5rem;
   border: 1px #11111180 solid;
   box-shadow: 0 2px 3px rgba(10,10,10,.2), 0 0 0 1px rgba(10,10,10,.2);
@@ -174,14 +179,6 @@ button, input {
 .current-user {
   background: #6088d140;
   border-radius: 0.5rem;
-}
-
-.or {
-  color: #ececec;
-  font-weight: 500;
-  width: 100%;
-  height: 1.5rem;
-  text-align: center;
 }
 
 .refresh {
@@ -202,6 +199,10 @@ button, input {
   .list {
     width: 60vw;
     height: 60vh;
+  }
+
+  .nav-buttons {
+    width: 50vw;
   }
 
   .LoginForm,
@@ -229,6 +230,10 @@ button, input {
 @media only screen and (min-width: 1024px) {
 
   .list {
+    width: 40vw;
+  }
+
+  .nav-buttons {
     width: 40vw;
   }
 

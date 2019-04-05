@@ -3,56 +3,66 @@ import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 
 export default class Navbar extends Component {
-  handleLogout() {
-    if (window.confirm('Are you sure you want to logout?')) {
-      this.props.tabClick(this.props.tabs.LOGIN);
-      this.setState({
-        loggedIn: false,
-      });
-      const localStorage = JSON.parse(window.localStorage.getItem('savedSession'));
-      localStorage.jwt = '';
-      window.localStorage.setItem('savedSession', JSON.stringify(localStorage));
-    }
-  }
-
   render() {
     return (
       <div className='Header'>
-        <div
-          style={{
-            display:
-              this.props.activeTab === this.props.tabs.MAIN && this.props.loggedIn === false
-                ? 'block'
-                : 'none',
-          }}>
+        <div className='nav-buttons'>
           <button
+            style={{
+              display:
+              (this.props.activeTab === this.props.tabs.MAIN && this.props.loggedIn === false) ||
+              (this.props.activeTab === this.props.tabs.REGISTER && this.props.loggedIn === false)
+                  ? 'block'
+                  : 'none',
+            }}
             className='button login-logout'
             onClick={() => this.props.tabClick(this.props.tabs.LOGIN)}>
             Login
           </button>
-        </div>
-        <div
-          style={{
-            display:
-              this.props.activeTab === this.props.tabs.MAIN && this.props.loggedIn !== false
-                ? 'block'
-                : 'none',
-          }}>
-          <button className='button login-logout' onClick={() => this.handleLogout()}>
-            Logout
-          </button>
-        </div>
-        <div
-          style={{
-            display:
-              this.props.activeTab !== this.props.tabs.MAIN && this.props.loggedIn === false
-                ? 'block'
-                : 'none',
-          }}>
           <button
+            style={{
+              display:
+                this.props.activeTab === this.props.tabs.LOGIN && this.props.loggedIn === false
+                  ? 'block'
+                  : 'none',
+            }}
             className='button login-logout'
             onClick={() => this.props.tabClick(this.props.tabs.MAIN)}>
             Cancel
+          </button>
+          <button
+            style={{
+              display:
+                (this.props.activeTab === this.props.tabs.MAIN && this.props.loggedIn === false) ||
+                (this.props.activeTab === this.props.tabs.LOGIN && this.props.loggedIn === false)
+                  ? 'block'
+                  : 'none',
+            }}
+            className='button login-logout'
+            onClick={() => this.props.tabClick(this.props.tabs.REGISTER)}>
+            Register
+          </button>
+          <button
+            style={{
+              display:
+                this.props.activeTab === this.props.tabs.REGISTER && this.props.loggedIn === false
+                  ? 'block'
+                  : 'none',
+            }}
+            className='button login-logout'
+            onClick={() => this.props.tabClick(this.props.tabs.MAIN)}>
+            Cancel
+          </button>
+          <button
+            style={{
+              display:
+                this.props.loggedIn !== false
+                  ? 'block'
+                  : 'none',
+            }}
+            className='button login-logout'
+            onClick={() => this.props.handleLogoutUser()}>
+            Logout
           </button>
         </div>
         <div

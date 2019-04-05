@@ -19,6 +19,7 @@ class App extends Component {
     this.handleLoginUser = this.handleLoginUser.bind(this);
     this.handleRegisterInputChange = this.handleRegisterInputChange.bind(this);
     this.handleRegisterUser = this.handleRegisterUser.bind(this);
+    this.handleLogoutUser = this.handleLogoutUser.bind(this);
     this.handlePostInputChange = this.handlePostInputChange.bind(this);
     this.handleCreatePost = this.handleCreatePost.bind(this);
     this.handleDeletePost = this.handleDeletePost.bind(this);
@@ -191,6 +192,18 @@ class App extends Component {
       });
   }
 
+  handleLogoutUser() {
+    if (window.confirm('Are you sure you want to logout?')) {
+      this.tabClick(tabs.LOGIN);
+      this.setState({
+        loggedIn: false,
+      });
+      const localStorage = JSON.parse(window.localStorage.getItem('savedSession'));
+      localStorage.jwt = '';
+      window.localStorage.setItem('savedSession', JSON.stringify(localStorage));
+    }
+  }
+
   handleCreatePost(e) {
     e.preventDefault();
     if (this.state.loggedIn === false) {
@@ -270,7 +283,7 @@ class App extends Component {
         username: '',
         password: '',
       },
-    });
+    })
   }
 
   resetRegisterInput() {
@@ -292,9 +305,12 @@ class App extends Component {
           loggedIn={this.state.loggedIn}
           tabClick={this.tabClick}
           handleLoginUser={this.handleLoginUser}
+          handleLogoutUser={this.handleLogoutUser}
           handleLoginInputChange={this.handleLoginInputChange}
           handleRegisterUser={this.handleRegisterUser}
           handleRegisterInputChange={this.handleRegisterInputChange}
+          loginInput={this.state.loginInput}
+          registerInput={this.state.registerInput}
         />
         <Body
           posts={this.state.posts}
