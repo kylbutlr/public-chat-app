@@ -8,7 +8,7 @@ Created to be used with my [Public Chat API](https://github.com/kylbutlr/public-
 
 Uses: React, Axios, RWD
 
-## Usage
+## How to Use
 
 ### [Click here for a live preview](https://kylbutlr-chat-app.herokuapp.com/)
 
@@ -21,6 +21,8 @@ Alternatively, download this repository and run the front-end locally:
 1. Install the dependencies: ```npm install```
 2. Start the server: ```npm start``` 
 3. App can be found at: ```localhost:3000```
+
+***
 
 ## Contributing
 
