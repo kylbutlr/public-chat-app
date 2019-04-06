@@ -22,12 +22,10 @@ Alternatively, download this repository and run the front-end locally:
 2. Start the server: ```npm start``` 
 3. App can be found at: ```localhost:3000```
 
-***
-
-### Contributing
+## Contributing
 
 [@kylbutlr](https://github.com/kylbutlr)
 
-### License
+## License
 
 MIT
