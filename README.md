@@ -8,6 +8,8 @@ Created to be used with my [Public Chat API](https://github.com/kylbutlr/public-
 
 Uses: React, Axios, RWD
 
+***
+
 ## Usage
 
 ### [Click here for a live preview](https://kylbutlr-chat-app.herokuapp.com/)
