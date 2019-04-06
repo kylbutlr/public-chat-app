@@ -30,4 +30,4 @@ Alternatively, download this repository and run the front-end locally:
 
 ## License
 
-MIT
+MIT 
