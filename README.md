@@ -4,7 +4,7 @@
 
 Old school public chat room application. Register and login to a personal user account (no e-mail required), then create public chat messages that are visible for all other users. Also features responsive web design for cross-device compatibility.
 
-Created to be used with my [Public Chat API](https://github.com/kylbutlr/public-chat-api)
+Created to be used with [Public Chat API](https://github.com/kylbutlr/public-chat-api)
 
 Uses: React, Axios, RWD
 
