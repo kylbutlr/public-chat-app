@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import '../node_modules/bulma/css/bulma.min.css';
-import './App.css';
+import './css/App.css';
 import Navbar from './Components/Navbar';
 import Body from './Components/Body';
 

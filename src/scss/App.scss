@@ -17,7 +17,7 @@ p {
   border-radius: 0.5rem;
   border: 1px #11111180 solid;
   margin-bottom: 0.5rem;
-  box-shadow: inset 0 2px 3px rgba(10,10,10,.2) !important;
+  box-shadow: inset 0 2px 3px rgba(10, 10, 10, 0.2) !important;
 }
 
 .button {
@@ -25,11 +25,10 @@ p {
   font-weight: 500;
   border-radius: 0.5rem;
   border: 1px #11111180 solid;
-}
-
-.button:hover {
-  background: #7095db;
-  border: 1px #11111180 solid;
+  :hover {
+    background: #7095db;
+    border: 1px #11111180 solid;
+  }
 }
 
 .App {
@@ -38,7 +37,7 @@ p {
   width: 100vw;
   overflow: hidden;
   margin: 0 auto;
-  background: #41393E;
+  background: #41393e;
   display: flex;
   flex-direction: column;
 }
@@ -74,21 +73,18 @@ ol {
   flex-direction: column-reverse;
   overflow: auto;
   border: 1px #11111180 solid;
-  box-shadow: inset 0 4px 6px rgba(10,10,10,.2);
+  box-shadow: inset 0 4px 6px rgba(10, 10, 10, 0.2);
   margin-bottom: 0 !important;
-}
-
-.list div {
-  padding: 0.25rem 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.list li:last-child div {
-  margin-bottom: 0;
-}
-
-.list p {
-  margin: 0;
+  div {
+    padding: 0.25rem 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  li:last-child div {
+    margin-bottom: 0;
+  }
+  p {
+    margin: 0;
+  }
 }
 
 .message {
@@ -96,45 +92,39 @@ ol {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.message-username {
-  font-size: 1.1rem;
-  font-weight: 500;
-}
-
-.message-text {
-  padding: 0 0.5rem;
+  &-username {
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+  &-text {
+    padding: 0 0.5rem;
+  }
 }
 
 .nav-buttons {
-  display:flex;
+  display: flex;
   justify-content: space-evenly;
   width: 90vw;
-}
-
-.LoginForm input[type=submit],
-.RegisterForm input[type=submit] {
-  width: 100%;
-}
-
-.LoginForm button,
-.RegisterForm button {
-  width: 100%;
 }
 
 .LoginForm,
 .RegisterForm {
   border-radius: 0.5rem;
   border: 1px #11111180 solid;
-  background: #41393E;
+  background: #41393e;
   padding: 0.75rem;
   position: absolute;
   top: 6.25rem;
   z-index: 10;
   opacity: 0;
   transition: opacity 0.5s;
-  box-shadow: 0 2px 3px rgba(10,10,10,.2), 0 0 0 1px rgba(10,10,10,.2);
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.2), 0 0 0 1px rgba(10, 10, 10, 0.2);
+  input[type='submit'] {
+    width: 100%;
+  }
+  button {
+    width: 100%;
+  }
 }
 
 .postMessage {
@@ -142,10 +132,9 @@ ol {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.postMessage input {
-  margin-bottom: 0 !important;
+  input {
+    margin-bottom: 0 !important;
+  }
 }
 
 .postInput {
@@ -153,7 +142,7 @@ ol {
   width: 65vw;
   height: 2.5rem;
   border: 1px #11111180 solid;
-  box-shadow: 0 2px 3px rgba(10,10,10,.2), 0 0 0 1px rgba(10,10,10,.2);
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.2), 0 0 0 1px rgba(10, 10, 10, 0.2);
 }
 
 .postButton {
@@ -161,10 +150,11 @@ ol {
   height: 2.5rem;
   border-radius: 0 0.5rem 0.5rem 0;
   border: 1px #11111180 solid;
-  box-shadow: 0 2px 3px rgba(10,10,10,.2), 0 0 0 1px rgba(10,10,10,.2);
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.2), 0 0 0 1px rgba(10, 10, 10, 0.2);
 }
 
-button, input {
+button,
+input {
   padding: 0.5rem 1rem;
 }
 
@@ -173,7 +163,7 @@ button, input {
   width: 40vw;
   border-radius: 0.5rem;
   border: 1px #11111180 solid;
-  box-shadow: 0 2px 3px rgba(10,10,10,.2), 0 0 0 1px rgba(10,10,10,.2);
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.2), 0 0 0 1px rgba(10, 10, 10, 0.2);
 }
 
 .current-user {
@@ -195,7 +185,6 @@ button, input {
 }
 
 @media only screen and (min-width: 725px) {
-
   .list {
     width: 60vw;
     height: 60vh;
@@ -228,7 +217,6 @@ button, input {
 }
 
 @media only screen and (min-width: 1024px) {
-
   .list {
     width: 40vw;
   }
