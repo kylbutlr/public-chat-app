@@ -12,18 +12,18 @@ p {
 .input {
   background: #ececec;
   border-radius: 0.5rem;
-  border: 1px #11111180 solid;
+  border: 1px rgba(17, 17, 17, 0.5) solid;
   margin-bottom: 0.5rem;
-  box-shadow: inset 0 2px 3px rgba(10, 10, 10, 0.2) !important; }
+  box-shadow: inset 0 2px 3px rgba(17, 17, 17, 0.25) !important; }
 
 .button {
   background: #6088d1;
   font-weight: 500;
   border-radius: 0.5rem;
-  border: 1px #11111180 solid; }
-  .button :hover {
+  border: 1px rgba(17, 17, 17, 0.5) solid; }
+  .button:hover {
     background: #7095db;
-    border: 1px #11111180 solid; }
+    border: 1px rgba(17, 17, 17, 0.5) solid; }
 
 .App {
   height: 100vh;
@@ -62,8 +62,8 @@ ol {
   display: flex;
   flex-direction: column-reverse;
   overflow: auto;
-  border: 1px #11111180 solid;
-  box-shadow: inset 0 4px 6px rgba(10, 10, 10, 0.2);
+  border: 1px rgba(17, 17, 17, 0.5) solid;
+  box-shadow: inset 0 4px 6px rgba(17, 17, 17, 0.25);
   margin-bottom: 0 !important; }
   .list div {
     padding: 0.25rem 0.5rem;
@@ -92,7 +92,7 @@ ol {
 .LoginForm,
 .RegisterForm {
   border-radius: 0.5rem;
-  border: 1px #11111180 solid;
+  border: 1px rgba(17, 17, 17, 0.5) solid;
   background: #41393e;
   padding: 0.75rem;
   position: absolute;
@@ -100,7 +100,7 @@ ol {
   z-index: 10;
   opacity: 0;
   transition: opacity 0.5s;
-  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.2), 0 0 0 1px rgba(10, 10, 10, 0.2); }
+  box-shadow: 0 2px 3px rgba(17, 17, 17, 0.25), 0 0 0 1px rgba(17, 17, 17, 0.25); }
   .LoginForm input[type='submit'],
   .RegisterForm input[type='submit'] {
     width: 100%; }
@@ -120,15 +120,15 @@ ol {
   border-radius: 0.5rem 0 0 0.5rem;
   width: 65vw;
   height: 2.5rem;
-  border: 1px #11111180 solid;
-  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.2), 0 0 0 1px rgba(10, 10, 10, 0.2); }
+  border: 1px rgba(17, 17, 17, 0.5) solid;
+  box-shadow: 0 2px 3px rgba(17, 17, 17, 0.25), 0 0 0 1px rgba(17, 17, 17, 0.25); }
 
 .postButton {
   width: 25vw;
   height: 2.5rem;
   border-radius: 0 0.5rem 0.5rem 0;
-  border: 1px #11111180 solid;
-  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.2), 0 0 0 1px rgba(10, 10, 10, 0.2); }
+  border: 1px rgba(17, 17, 17, 0.5) solid;
+  box-shadow: 0 2px 3px rgba(17, 17, 17, 0.25), 0 0 0 1px rgba(17, 17, 17, 0.25); }
 
 button,
 input {
@@ -138,11 +138,11 @@ input {
   height: 2.5rem;
   width: 40vw;
   border-radius: 0.5rem;
-  border: 1px #11111180 solid;
-  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.2), 0 0 0 1px rgba(10, 10, 10, 0.2); }
+  border: 1px rgba(17, 17, 17, 0.5) solid;
+  box-shadow: 0 2px 3px rgba(17, 17, 17, 0.25), 0 0 0 1px rgba(17, 17, 17, 0.25); }
 
 .current-user {
-  background: #6088d140;
+  background: rgba(96, 136, 209, 0.25);
   border-radius: 0.5rem; }
 
 .refresh {
