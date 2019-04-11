@@ -222,10 +222,13 @@ class App extends Component {
             console.log(err);
           })
           .then(data => {
-            this.setState({
-              postInput: '',
-              posts: this.state.posts.concat(data.data),
-            });
+            this.setState(
+              {
+                postInput: '',
+                posts: this.state.posts.concat(data.data),
+              },
+              document.getElementById('postInput').focus()
+            );
           });
       });
     }
@@ -283,7 +286,7 @@ class App extends Component {
         username: '',
         password: '',
       },
-    })
+    });
   }
 
   resetRegisterInput() {
@@ -319,6 +322,7 @@ class App extends Component {
           handleCreatePost={this.handleCreatePost}
           handleDeletePost={this.handleDeletePost}
           handlePostInputChange={this.handlePostInputChange}
+          postInput={this.state.postInput}
         />
       </div>
     );

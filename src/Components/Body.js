@@ -54,7 +54,7 @@ export default class Body extends Component {
               autoComplete='off'
               required
               value={this.props.postInput}
-              onChange={this.props.handlePostInputChang}
+              onChange={this.props.handlePostInputChange}
             />
             <input className='button postButton' type='submit' value='Send' />
           </form>
