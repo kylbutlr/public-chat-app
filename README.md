@@ -6,7 +6,7 @@ Old school public chat room application. Register and login to a personal user a
 
 Created to be used with [Public Chat API](https://github.com/kylbutlr/public-chat-api)
 
-Uses: React, Axios, Sass, RWD
+Uses: React, Axios, Sass, Bulma, RWD
 
 ## How to Use:
 
