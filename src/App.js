@@ -168,7 +168,7 @@ class App extends Component {
   handleLoginUser(e) {
     e.preventDefault();
     const newUser = {
-      username: this.state.loginInput.username.toLowerCase(),
+      username: this.state.loginInput.username.toLowerCase().trim(),
       password: this.state.loginInput.password,
     };
     axios
