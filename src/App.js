@@ -26,6 +26,7 @@ class App extends Component {
     this.tabClick = this.tabClick.bind(this);
     this.resetLoginInput = this.resetLoginInput.bind(this);
     this.resetRegisterInput = this.resetRegisterInput.bind(this);
+    this.renderPost = this.renderPost.bind(this);
     this.state = {
       activeTab: tabs.MAIN,
       loggedIn: false,
@@ -194,7 +195,7 @@ class App extends Component {
 
   handleLogoutUser() {
     if (window.confirm('Are you sure you want to logout?')) {
-      this.tabClick(tabs.LOGIN);
+      this.tabClick(tabs.MAIN);
       this.setState({
         loggedIn: false,
       });
@@ -299,6 +300,42 @@ class App extends Component {
     });
   }
 
+  capitalizeFirstChar(string) {
+    if (string) {
+      const newString = string.substring(0, 1).toUpperCase() + string.substring(1);
+      return newString;
+    } else {
+      return string;
+    }
+  }
+
+  renderPost(data) {
+    const { id, text, user_id } = data;
+    const username = this.state.users.filter(x => x.id === user_id)[0].username;
+    return (
+      <li key={id}>
+        <div
+          className={
+            this.state.loggedIn.username === username ? 'message current-user' : 'message'
+          }>
+          <div className='message-content'>
+            <p className='message-username'>{this.capitalizeFirstChar(username)}:</p>
+            <p className='message-text'>{text}</p>
+          </div>
+          <div
+            className='delete-message'
+            style={{
+              display: this.state.loggedIn.username === username ? 'block' : 'none',
+            }}>
+            <button className='button' id={id} onClick={e => this.handleDeletePost(e)}>
+              X
+            </button>
+          </div>
+        </div>
+      </li>
+    );
+  }
+
   render() {
     return (
       <div className='App'>
@@ -322,6 +359,7 @@ class App extends Component {
           handleCreatePost={this.handleCreatePost}
           handleDeletePost={this.handleDeletePost}
           handlePostInputChange={this.handlePostInputChange}
+          renderPost={this.renderPost}
           postInput={this.state.postInput}
         />
       </div>
