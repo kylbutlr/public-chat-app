@@ -20,7 +20,6 @@ export default function LoginForm({ activeTab, tabs, onSubmit, onChange, usernam
           value={username}
           onChange={e => onChange('username', e)}
         />
-        <br />
         <input
           type='password'
           name='password'
@@ -32,7 +31,6 @@ export default function LoginForm({ activeTab, tabs, onSubmit, onChange, usernam
           value={password}
           onChange={e => onChange('password', e)}
         />
-        <br />
         <input className='button' type='submit' value='Login' />
       </form>
     </div>

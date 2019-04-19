@@ -121,14 +121,12 @@ ol {
   padding: 0.75rem;
   position: absolute;
   top: 6.25rem;
+  width: 80vw;
   z-index: 10;
   opacity: 0;
   transition: opacity 0.5s;
   box-shadow: 0 2px 3px rgba($off-black, 0.25), 0 0 0 1px rgba($off-black, 0.25);
   input[type='submit'] {
-    width: 100%;
-  }
-  button {
     width: 100%;
   }
 }
@@ -202,7 +200,8 @@ input {
 
   .LoginForm,
   .RegisterForm {
-    top: 7.5rem;
+    top: 6rem;
+    width: 35vw;
   }
 
   .login-logout {
@@ -233,6 +232,11 @@ input {
 
   .login-logout {
     width: 15vw;
+  }
+
+  .LoginForm,
+  .RegisterForm {
+    width: 20vw;
   }
 
   .post {

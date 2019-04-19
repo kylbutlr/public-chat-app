@@ -28,7 +28,6 @@ export default function RegisterForm({
           value={username}
           onChange={e => onChange('username', e)}
         />
-        <br />
         <input
           type='password'
           name='password'
@@ -40,7 +39,6 @@ export default function RegisterForm({
           value={password}
           onChange={e => onChange('password', e)}
         />
-        <br />
         <input
           type='password'
           name='confirmPass'
@@ -52,7 +50,6 @@ export default function RegisterForm({
           value={confirmPass}
           onChange={e => onChange('confirmPass', e)}
         />
-        <br />
         <input className='button' type='submit' value='Register New User' />
       </form>
     </div>
