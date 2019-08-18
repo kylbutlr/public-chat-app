@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../node_modules/bulma/css/bulma.min.css';
 import './css/App.css';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import swal from 'sweetalert';
 
 import Navbar from './Components/Navbar';
@@ -29,12 +31,15 @@ class App extends Component {
     this.resetLoginInput = this.resetLoginInput.bind(this);
     this.resetRegisterInput = this.resetRegisterInput.bind(this);
     this.renderPost = this.renderPost.bind(this);
+    this.renderSpinner = this.renderSpinner.bind(this);
+    this.notifyRegisterSuccessful = this.notifyRegisterSuccessful.bind(this);
     this.state = {
       activeTab: tabs.MAIN,
       loggedIn: false,
       users: [],
       posts: [],
       postInput: '',
+      loading: true,
       loginInput: {
         username: '',
         password: '',
@@ -98,16 +103,21 @@ class App extends Component {
       .get(`${API_ENDPOINT}/posts`)
       .catch(err => {
         console.log(err);
+        this.setState({ loading: false });
       })
       .then(posts => {
         this.setState({
           posts: posts.data,
+        }, () => {
+          this.setState({ loading: false });
         });
       });
     setTimeout(() => {
-      this.getPosts();
-      document.getElementById('list').classList.add('refresh');
-      document.getElementById('list').classList.remove('refresh');
+      this.getUsers(() => {
+        this.getPosts();
+        document.getElementById('list').classList.add('refresh');
+        document.getElementById('list').classList.remove('refresh');
+      });
     }, 2500);
   }
 
@@ -157,6 +167,7 @@ class App extends Component {
                 confirmPass: '',
               },
             });
+            this.notifyRegisterSuccessful(newUser.username);
             this.tabClick(tabs.LOGIN);
           }
         });
@@ -216,7 +227,13 @@ class App extends Component {
   handleCreatePost(e) {
     e.preventDefault();
     if (this.state.loggedIn === false) {
-      swal('Error', 'Sorry, you must be logged in first.', 'error');
+      swal({
+        title: 'Error', 
+        text: 'Sorry, you must be logged in first.', 
+        icon: 'error'})
+        .then(() => {
+          document.getElementById('loginUsername').focus();
+        });
       this.setState({ postInput: '' });
       this.tabClick(tabs.LOGIN);
     } else {
@@ -317,6 +334,24 @@ class App extends Component {
     }
   }
 
+  notifyRegisterSuccessful(user) {
+    this.setState({ 
+      loginInput: {
+        username: user,
+        password: '',
+      } 
+    }, () => {
+      document.getElementById('loginPassword').focus();
+      swal({
+        title: 'Register Successful',
+        text: 'Welcome, "' + user + '"!', 
+        icon: 'success'
+      }).then(() => {
+        document.getElementById('loginPassword').focus();
+      });
+    });
+  }
+
   renderPost(data) {
     const { id, text, user_id } = data;
     const username = this.state.users.filter(x => x.id === user_id)[0].username;
@@ -341,6 +376,15 @@ class App extends Component {
           </div>
         </div>
       </li>
+    );
+  }
+
+  renderSpinner() {
+    return (
+      <div className='spinner'>
+        <FontAwesomeIcon icon={faSpinner} spin />
+        <h2 hidden className='spinner-text'>Loading...</h2> 
+      </div>
     );
   }
 
@@ -369,6 +413,8 @@ class App extends Component {
           handlePostInputChange={this.handlePostInputChange}
           renderPost={this.renderPost}
           postInput={this.state.postInput}
+          renderSpinner={this.renderSpinner}
+          loading={this.state.loading}
         />
       </div>
     );

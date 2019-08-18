@@ -1,5 +1,6 @@
 import React from 'react';
 import PostMessage from './PostMessage';
+import LoadingSpinner from './LoadingSpinner';
 
 export default function Body({
   posts,
@@ -7,11 +8,26 @@ export default function Body({
   handleCreatePost,
   postInput,
   handlePostInputChange,
+  loading,
+  renderSpinner
 }) {
   return (
     <div className='Body'>
-      <div id='list' className='list'>
-        <ol>{posts.map(n => renderPost(n))}</ol>
+      <div style={{
+        display: loading === true ? 'block' : 'none',
+      }}>
+        <div id='list' className='list'>
+          <LoadingSpinner
+            renderSpinner={renderSpinner}
+          />
+        </div>
+      </div>
+      <div style={{
+        display: loading === false ? 'block' : 'none',
+      }}>
+        <div id='list' className='list'>
+          <ol>{posts.map(n => renderPost(n))}</ol>
+        </div>
       </div>
       <PostMessage
         postInput={postInput}
