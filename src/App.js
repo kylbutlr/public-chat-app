@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import '../node_modules/bulma/css/bulma.min.css';
 import './css/App.css';
+import swal from 'sweetalert';
+
 import Navbar from './Components/Navbar';
 import Body from './Components/Body';
 
@@ -140,11 +142,9 @@ class App extends Component {
         .post(`${API_ENDPOINT}/register`, newUser)
         .catch(err => {
           if (err.response.status === 422) {
-            alert(
-              'Sorry, that username (' + this.state.registerInput.username + ') already exists.'
-            );
+            swal('Error', 'Sorry, that username (' + this.state.registerInput.username + ') already exists.', 'error');
           } else {
-            alert('Error: ' + err.message);
+            swal('Error', err.message, 'error');
           }
         })
         .then(res => {
@@ -161,7 +161,7 @@ class App extends Component {
           }
         });
     } else {
-      alert('Sorry, passwords did not match. Please try again.');
+      swal('Error', 'Sorry, passwords did not match. Please try again.', 'error');
     }
   }
 
@@ -176,9 +176,9 @@ class App extends Component {
       .catch(err => {
         if (err) {
           if (err.response.status === 404) {
-            alert('Sorry, invalid username/password, please try again.');
+            swal('Error', 'Sorry, invalid username/password. Please try again.', 'error');
           } else {
-            alert('Error: ' + err.message);
+            swal('Error', err.message, 'error');
           }
         }
       })
@@ -194,21 +194,29 @@ class App extends Component {
   }
 
   handleLogoutUser() {
-    if (window.confirm('Are you sure you want to logout?')) {
-      this.tabClick(tabs.MAIN);
-      this.setState({
-        loggedIn: false,
-      });
-      const localStorage = JSON.parse(window.localStorage.getItem('savedSession'));
-      localStorage.jwt = '';
-      window.localStorage.setItem('savedSession', JSON.stringify(localStorage));
-    }
+    swal({
+      title: 'Are you sure?',
+      text: 'Are you sure you want to logout?',
+      icon: 'warning',
+      buttons: true,
+    })
+    .then(willLogout => {
+      if (willLogout) {
+        this.tabClick(tabs.MAIN);
+        this.setState({
+          loggedIn: false,
+        });
+        const localStorage = JSON.parse(window.localStorage.getItem('savedSession'));
+        localStorage.jwt = '';
+        window.localStorage.setItem('savedSession', JSON.stringify(localStorage));
+      }
+    });
   }
 
   handleCreatePost(e) {
     e.preventDefault();
     if (this.state.loggedIn === false) {
-      alert('Please log in first');
+      swal('Error', 'Sorry, you must be logged in first.', 'error');
       this.setState({ postInput: '' });
       this.tabClick(tabs.LOGIN);
     } else {
