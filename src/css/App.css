@@ -9,6 +9,14 @@ html {
 p {
   cursor: default; }
 
+.Background {
+  background: linear-gradient(15deg, #fddfb4 0%, #feeacd 100%);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center; }
+
 .input {
   background: #ececec;
   border-radius: 0.5rem;
@@ -17,13 +25,20 @@ p {
   box-shadow: inset 0 2px 3px rgba(17, 17, 17, 0.25) !important; }
 
 .button {
-  background: #6088d1;
+  background: linear-gradient(15deg, #6188d1 0%, #7096db 100%);
   font-weight: 500;
   border-radius: 0.5rem;
   border: 1px rgba(17, 17, 17, 0.5) solid; }
   .button:hover {
-    background: #7095db;
+    background: linear-gradient(15deg, #7096db 0%, #81a4e4 100%);
     border: 1px rgba(17, 17, 17, 0.5) solid; }
+
+.button:active {
+  outline: none;
+  border: 1px rgba(17, 17, 17, 0.5) solid;
+  box-shadow: inset 0px 0px 5px rgba(17, 17, 17, 0.5);
+  -moz-box-shadow: inset 0px 0px 5px rgba(17, 17, 17, 0.5);
+  -webkit-box-shadow: inset 0px 0px 5px rgba(17, 17, 17, 0.5); }
 
 .App {
   height: 100vh;
@@ -31,9 +46,15 @@ p {
   width: 100vw;
   overflow: hidden;
   margin: 0 auto;
-  background: #41393e;
   display: flex;
   flex-direction: column; }
+
+.Main {
+  padding: 0;
+  margin: 5vh auto 0;
+  border-radius: 1.5rem;
+  background: #41383e;
+  box-shadow: -3px 3px 15px rgba(17, 17, 17, 0.35); }
 
 .Header {
   display: flex;
@@ -47,7 +68,8 @@ p {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  flex: 1; }
+  flex: 1;
+  padding: 0 1.25rem; }
 
 .spinner-div {
   width: 100%;
@@ -107,17 +129,16 @@ ol {
 
 .nav-buttons {
   display: flex;
-  justify-content: space-evenly;
-  width: 90vw; }
+  justify-content: space-evenly; }
 
 .LoginForm,
 .RegisterForm {
   border-radius: 0.5rem;
   border: 1px rgba(17, 17, 17, 0.5) solid;
-  background: #41393e;
+  background: #41383e;
   padding: 0.75rem;
   position: absolute;
-  top: 6.25rem;
+  top: calc(6.25rem + 5vh);
   width: 80vw;
   z-index: 10;
   opacity: 0;
@@ -182,12 +203,12 @@ input {
     width: 50vw; }
   .LoginForm,
   .RegisterForm {
-    top: 6rem;
+    top: calc(6rem + 5vh);
     width: 35vw; }
   .login-logout {
     width: 20vw; }
   .postMessage {
-    margin-bottom: 5vh; }
+    margin-bottom: 0; }
   .postInput {
     width: 45vw; }
   .postButton {

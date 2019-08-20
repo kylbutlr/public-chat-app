@@ -1,8 +1,13 @@
 $off-white: #ececec;
 $off-black: #111111;
 $primary-color: #6088d1;
+$primary-color-grad: linear-gradient(15deg,hsl(219, 55%, 60%) 0%, hsl(219, 60%, 65%) 100%);
 $primary-light: #7095db;
-$secondary-color: #41393e;
+$primary-light-grad: linear-gradient(15deg,hsl(219, 60%, 65%) 0%, hsl(219, 65%, 70%) 100%);
+$secondary-color: #41383e;
+$secondary-color-grad: linear-gradient(15deg,hsl(323, 7%, 24%) 0%, hsl(323, 12%, 29%) 100%);
+$background-color: #fddeb4;
+$background-color-grad: linear-gradient(15deg,hsl(35, 95%, 85%) 0%, hsl(35, 96%, 90%) 100%);
 
 * {
   margin: 0;
@@ -18,6 +23,15 @@ p {
   cursor: default;
 }
 
+.Background {
+  background: $background-color-grad;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
 .input {
   background: $off-white;
   border-radius: 0.5rem;
@@ -27,14 +41,22 @@ p {
 }
 
 .button {
-  background: $primary-color;
+  background: $primary-color-grad;
   font-weight: 500;
   border-radius: 0.5rem;
   border: 1px rgba($off-black, 0.5) solid;
   &:hover {
-    background: $primary-light;
+    background: $primary-light-grad;
     border: 1px rgba($off-black, 0.5) solid;
   }
+}
+
+.button:active {
+  outline:none;
+  border: 1px rgba($off-black, 0.5) solid;
+  box-shadow: inset 0px 0px 5px rgba($off-black, 0.5); 
+  -moz-box-shadow: inset 0px 0px 5px rgba($off-black, 0.5);
+  -webkit-box-shadow: inset 0px 0px 5px rgba($off-black, 0.5);
 }
 
 .App {
@@ -43,9 +65,16 @@ p {
   width: 100vw;
   overflow: hidden;
   margin: 0 auto;
-  background: $secondary-color;
   display: flex;
   flex-direction: column;
+}
+
+.Main {
+  padding: 0;
+  margin: 5vh auto 0;
+  border-radius: 1.5rem;
+  background: $secondary-color;
+  box-shadow: -3px 3px 15px rgba($off-black, 0.35);
 }
 
 .Header {
@@ -62,6 +91,7 @@ p {
   align-items: center;
   justify-content: flex-start;
   flex: 1;
+  padding: 0 1.25rem;
 }
 
 .spinner-div {
@@ -134,7 +164,6 @@ ol {
 .nav-buttons {
   display: flex;
   justify-content: space-evenly;
-  width: 90vw;
 }
 
 .LoginForm,
@@ -144,7 +173,7 @@ ol {
   background: $secondary-color;
   padding: 0.75rem;
   position: absolute;
-  top: 6.25rem;
+  top: calc(6.25rem + 5vh);
   width: 80vw;
   z-index: 10;
   opacity: 0;
@@ -224,7 +253,7 @@ input {
 
   .LoginForm,
   .RegisterForm {
-    top: 6rem;
+    top: calc(6rem + 5vh);
     width: 35vw;
   }
 
@@ -234,7 +263,7 @@ input {
 
   .post {
     &Message {
-      margin-bottom: 5vh;
+      margin-bottom: 0;
     }
     &Input {
       width: 45vw;

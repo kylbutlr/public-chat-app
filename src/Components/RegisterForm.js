@@ -50,7 +50,7 @@ export default function RegisterForm({
           value={confirmPass}
           onChange={e => onChange('confirmPass', e)}
         />
-        <input className='button' type='submit' value='Register New User' />
+        <input className='button' type='submit' value='Register' />
       </form>
     </div>
   );

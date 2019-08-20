@@ -391,31 +391,35 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-        <Navbar
-          tabs={tabs}
-          activeTab={this.state.activeTab}
-          loggedIn={this.state.loggedIn}
-          tabClick={this.tabClick}
-          handleLoginUser={this.handleLoginUser}
-          handleLogoutUser={this.handleLogoutUser}
-          handleLoginInputChange={this.handleLoginInputChange}
-          handleRegisterUser={this.handleRegisterUser}
-          handleRegisterInputChange={this.handleRegisterInputChange}
-          loginInput={this.state.loginInput}
-          registerInput={this.state.registerInput}
-        />
-        <Body
-          posts={this.state.posts}
-          users={this.state.users}
-          loggedIn={this.state.loggedIn}
-          handleCreatePost={this.handleCreatePost}
-          handleDeletePost={this.handleDeletePost}
-          handlePostInputChange={this.handlePostInputChange}
-          renderPost={this.renderPost}
-          postInput={this.state.postInput}
-          renderSpinner={this.renderSpinner}
-          loading={this.state.loading}
-        />
+        <div className='Background'>
+          <div className='Main'>
+            <Navbar
+              tabs={tabs}
+              activeTab={this.state.activeTab}
+              loggedIn={this.state.loggedIn}
+              tabClick={this.tabClick}
+              handleLoginUser={this.handleLoginUser}
+              handleLogoutUser={this.handleLogoutUser}
+              handleLoginInputChange={this.handleLoginInputChange}
+              handleRegisterUser={this.handleRegisterUser}
+              handleRegisterInputChange={this.handleRegisterInputChange}
+              loginInput={this.state.loginInput}
+              registerInput={this.state.registerInput}
+            />
+            <Body
+              posts={this.state.posts}
+              users={this.state.users}
+              loggedIn={this.state.loggedIn}
+              handleCreatePost={this.handleCreatePost}
+              handleDeletePost={this.handleDeletePost}
+              handlePostInputChange={this.handlePostInputChange}
+              renderPost={this.renderPost}
+              postInput={this.state.postInput}
+              renderSpinner={this.renderSpinner}
+              loading={this.state.loading}
+            />
+          </div>
+        </div>
       </div>
     );
   }
