@@ -70,11 +70,15 @@ p {
 }
 
 .Main {
+  width: 90%;
+  height: 90%;
   padding: 0;
   margin: 5vh auto 0;
   border-radius: 1.5rem;
   background: $secondary-color;
   box-shadow: -3px 3px 15px rgba($off-black, 0.35);
+  display: flex;
+  flex-direction: column;
 }
 
 .Header {
@@ -118,6 +122,11 @@ p {
   padding-bottom: 0;
 }
 
+.loaded-div,
+.loading-div {
+  height: 100%;
+}
+
 ol {
   list-style: none;
   padding: 0.5rem;
@@ -128,7 +137,7 @@ ol {
   border-radius: 0.5rem;
   background: $off-white;
   flex: 1;
-  width: 90vw;
+  width: calc(90vw - 40px);
   display: flex;
   flex-direction: column-reverse;
   overflow: auto;
@@ -164,6 +173,7 @@ ol {
 .nav-buttons {
   display: flex;
   justify-content: center;
+  width: 85%;
   :nth-child(3),
   :nth-child(4) {
     margin-left: 1rem; 
@@ -177,8 +187,8 @@ ol {
   background: $secondary-color;
   padding: 0.75rem;
   position: absolute;
-  top: calc(6.25rem + 5vh);
-  width: 80vw;
+  top: 8rem;
+  width: 75vw;
   z-index: 10;
   opacity: 0;
   transition: opacity 0.5s;
@@ -190,17 +200,19 @@ ol {
 
 .post {
   &Message {
-    height: 5rem;
+    width: 85vw;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: auto;
+    padding: 20px 0;
     input {
       margin-bottom: 0 !important;
     }
   }
   &Input {
     border-radius: 0.5rem 0 0 0.5rem;
-    width: 65vw;
+    width: 55vw;
     height: 2.5rem;
     border: 1px rgba($off-black, 0.5) solid;
     box-shadow: 0 2px 3px rgba($off-black, 0.25), 0 0 0 1px rgba($off-black, 0.25);
@@ -246,19 +258,20 @@ input {
 }
 
 @media only screen and (min-width: 725px) {
-  .list {
-    width: 60vw;
-    height: 60vh;
+  .Main {
+    width: 70%;
+    height: 70%;
   }
 
+  .list,
   .nav-buttons {
-    width: 50vw;
+    width: calc(70vw - 40px);
   }
 
   .LoginForm,
   .RegisterForm {
     top: calc(6rem + 5vh);
-    width: 35vw;
+    width: 40%;
   }
 
   .login-logout {
@@ -270,7 +283,7 @@ input {
       margin-bottom: 0;
     }
     &Input {
-      width: 45vw;
+      width: 35vw;
     }
     &Button {
       width: 15vw;
@@ -279,12 +292,14 @@ input {
 }
 
 @media only screen and (min-width: 1024px) {
-  .list {
-    width: 40vw;
+  .Main {
+    width: 50%;
+    height: 80%;
   }
 
+  .list,
   .nav-buttons {
-    width: 40vw;
+    width: calc(50vw - 40px);
   }
 
   .login-logout {
@@ -293,12 +308,12 @@ input {
 
   .LoginForm,
   .RegisterForm {
-    width: 20vw;
+    width: 20%;
   }
 
   .post {
     &Input {
-      width: 30vw;
+      width: 25vw;
     }
     &Button {
       width: 10vw;

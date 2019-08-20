@@ -13,8 +13,8 @@ export default function Body({
 }) {
   return (
     <div className='Body'>
-      <div style={{
-        display: loading === true ? 'block' : 'none',
+      <div className='loading-div' style={{
+        display: loading === true ? 'flex' : 'none',
       }}>
         <div id='list' className='list'>
           <LoadingSpinner
@@ -22,8 +22,8 @@ export default function Body({
           />
         </div>
       </div>
-      <div style={{
-        display: loading === false ? 'block' : 'none',
+      <div className='loaded-div' style={{
+        display: loading === false ? 'flex' : 'none',
       }}>
         <div id='list' className='list'>
           <ol>{posts.map(n => renderPost(n))}</ol>
