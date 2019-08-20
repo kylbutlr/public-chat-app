@@ -163,7 +163,11 @@ ol {
 
 .nav-buttons {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  :nth-child(3),
+  :nth-child(4) {
+    margin-left: 1rem; 
+  }
 }
 
 .LoginForm,

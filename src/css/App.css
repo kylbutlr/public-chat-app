@@ -129,7 +129,10 @@ ol {
 
 .nav-buttons {
   display: flex;
-  justify-content: space-evenly; }
+  justify-content: center; }
+  .nav-buttons :nth-child(3),
+  .nav-buttons :nth-child(4) {
+    margin-left: 1rem; }
 
 .LoginForm,
 .RegisterForm {
