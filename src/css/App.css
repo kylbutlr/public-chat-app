@@ -25,12 +25,12 @@ p {
   box-shadow: inset 0 2px 3px rgba(17, 17, 17, 0.25) !important; }
 
 .button {
-  background: linear-gradient(15deg, #6188d1 0%, #7096db 100%);
+  background: linear-gradient(15deg, #738c77 0%, #7b9d81 100%);
   font-weight: 500;
   border-radius: 0.5rem;
   border: 1px rgba(17, 17, 17, 0.5) solid; }
   .button:hover {
-    background: linear-gradient(15deg, #7096db 0%, #81a4e4 100%);
+    background: linear-gradient(15deg, #7b9d81 0%, #85ad8b 100%);
     border: 1px rgba(17, 17, 17, 0.5) solid; }
 
 .button:active {
@@ -196,7 +196,7 @@ input {
   box-shadow: 0 2px 3px rgba(17, 17, 17, 0.25), 0 0 0 1px rgba(17, 17, 17, 0.25); }
 
 .current-user {
-  background: rgba(96, 136, 209, 0.25);
+  background: rgba(115, 140, 119, 0.25);
   border-radius: 0.5rem; }
 
 .refresh {
