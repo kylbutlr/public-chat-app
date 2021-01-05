@@ -10,7 +10,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.21",
     "@fortawesome/free-solid-svg-icons": "^5.10.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "bcrypt": "^3.0.5",
     "bulma": "^0.7.4",
     "node-sass": "^4.11.0",
